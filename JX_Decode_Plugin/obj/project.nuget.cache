@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "AkuB83dgUL543E2PqU2FBYN8PbZ68v66HiBYGAQq/O5j5h4i2fjUJEqhThSYHQlV36lZgzaCXzIk0GRHsmIxww==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\84991\\Desktop\\JX_Plugins\\JX_Decode_Plugin\\JX_Decode_Plugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\84991\\.nuget\\packages\\bepinex.analyzers\\1.0.6\\bepinex.analyzers.1.0.6.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\bepinex.baselib\\5.4.16\\bepinex.baselib.5.4.16.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\bepinex.core\\5.4.16\\bepinex.core.5.4.16.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\bepinex.plugininfoprops\\1.1.0\\bepinex.plugininfoprops.1.1.0.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\harmonyx\\2.5.5\\harmonyx.2.5.5.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.2\\microsoft.netframework.referenceassemblies.1.0.2.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net35\\1.0.2\\microsoft.netframework.referenceassemblies.net35.1.0.2.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\mono.cecil\\0.10.4\\mono.cecil.0.10.4.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\monomod.runtimedetour\\21.8.19.1\\monomod.runtimedetour.21.8.19.1.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\monomod.utils\\21.8.19.1\\monomod.utils.21.8.19.1.nupkg.sha512",
+    "C:\\Users\\84991\\.nuget\\packages\\unityengine.modules\\5.6.0\\unityengine.modules.5.6.0.nupkg.sha512"
+  ],
+  "logs": []
+}

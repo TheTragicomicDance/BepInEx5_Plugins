@@ -1,0 +1,10 @@
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\JX_Decode_Plugin.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\JX_Decode_Plugin.pdb
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\BepInEx.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\0Harmony.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\Mono.Cecil.Mdb.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\Mono.Cecil.Pdb.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\Mono.Cecil.Rocks.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\Mono.Cecil.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\MonoMod.RuntimeDetour.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Debug\net35\publish\MonoMod.Utils.dll

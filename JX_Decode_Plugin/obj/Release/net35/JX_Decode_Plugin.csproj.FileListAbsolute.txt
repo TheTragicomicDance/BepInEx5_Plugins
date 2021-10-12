@@ -1,0 +1,10 @@
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Release\net35\JX_Decode_Plugin.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\bin\Release\net35\JX_Decode_Plugin.pdb
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\PluginInfo.cs
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.AssemblyInfoInputs.cache
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.AssemblyInfo.cs
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.csproj.CoreCompileInputs.cache
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.dll
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.pdb
+C:\Users\84991\Desktop\JX_Plugins\JX_Decode_Plugin\obj\Release\net35\JX_Decode_Plugin.csproj.AssemblyReference.cache
