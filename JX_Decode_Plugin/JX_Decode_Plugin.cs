@@ -1,41 +1,85 @@
 ﻿using BepInEx;
+using BepInEx.Configuration;
 using HarmonyLib;
 using JyGame;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Xml;
 using UnityEngine;
-using UnityEngine.Networking;
 
 namespace JX_Decode_Plugin
 {
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class JX_Decode_Plugin : BaseUnityPlugin
     {
-        private static Harmony harmony = new Harmony("JX_Decode_Patch");
+        //配置文件
+        private ConfigEntry<string> savePath;//保存路径
+        public static string savePath_LUA;//LUA保存路径
+        public static string savePath_XML;//XML保存路径
+
+        //Hook框架
+        private static Harmony harmony = new("JX_Decode_Patch");
         public static Harmony Harmony { get => harmony; set => harmony = value; }
 
-        public static string savePath = string.Format("{0}/{1}", CommonSettings.persistentDataPath, "解密");
+        //记录标志
+        public static bool isLog = false;
+        public static List<string> logXML = new();
+        public static List<string> logXML_name = new();
 
         private void Awake()
         {
-            // Plugin startup logic
-            Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 已加载!");
+            //加载配置文件
+            savePath = Config.Bind("General",      // The section under which the option is shown
+                             "savePath",  // The key of the configuration option in the configuration file
+                             string.Format("{0}/{1}", CommonSettings.persistentDataPath, "解密"), // The default value
+                             "配置文件的保存路径"); // Description of the option to show in the config file
+            //设置基础路径
+            savePath_LUA = string.Format("{0}/{1}/", savePath.Value, "LUA");
+            savePath_XML = string.Format("{0}/{1}/", savePath.Value, "XML");
+
+
+
+            //清空创建文件夹
+            try
+            {
+                Directory.Delete(savePath.Value, true);
+                Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 删除 {savePath.Value}!");
+            }
+            finally
+            {
+                Directory.CreateDirectory(savePath.Value);
+                Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 创建 {savePath.Value}!");
+                Directory.CreateDirectory(savePath_XML);
+                Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 创建 {savePath_XML}!");
+                Directory.CreateDirectory(savePath_LUA);
+                Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 创建 {savePath_LUA}!");
+                // 控制台提示语
+                Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 已加载!");
+            }
+
         }
 
-        private void Start()
+        void Start()
         {
+            //执行所有代码Hook
             DoPatching();
         }
 
+        void Update()
+        {
+        }
+
+        //自动代码Hook，此处也可改写为手动代码Hook
         void DoPatching()
         {
             //Hook所有代码
             Harmony = new Harmony("JX_Decode_Patch");
             Harmony.PatchAll();
+            // 控制台提示语
+            Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 成功Hook代码!");
         }
 
+        /*
         void OnGUI()
         {
             if (GUI.Button(new Rect(20, 40, 80, 20), "点这里！"))
@@ -44,7 +88,6 @@ namespace JX_Decode_Plugin
                 StartCoroutine(LoadTestScenece());
             }
         }
-
 
         IEnumerator LoadTestScenece()
         {
@@ -57,26 +100,25 @@ namespace JX_Decode_Plugin
             {
                 AssetBundle ab = bundle.assetBundle; //将场景通过AssetBundle方式加载到内存中 
                 AsyncOperation asy = Application.LoadLevelAsync("TestSence"); //sceneName不能加后缀,只是场景名称
-                yield return asy;   
+                yield return asy;
             }
             else
             {
                 Debug.LogError(bundle.error);
             }
         }
+        */
     }
-
+    
+    //MainMenu下的OnMusic函数Hook
     [HarmonyPatch(typeof(MainMenu), "OnMusic")]
     class MainMenu_OnMusic_Patch
     {
-        //xmls的对应位置，参考原版函数
-        private static string xmlsHookPath = "\u200E\u202B\u206C\u206A\u206A\u202C\u200E\u206A\u206C\u200F\u206F\u206E\u202E\u206A\u200F\u202B\u206A\u200F\u202C\u202E\u202E\u200E\u206B\u200E\u206B\u206F\u206C\u200E\u200D\u202E\u200C\u202B\u206F\u202B\u200C\u200F\u202A\u202B\u202A\u206A\u202E";
-
         //获得lua列表
-        private static List<string> getLuaFileList()
+        private static List<string> GetLuaFileList()
         {
-            List<string> fileList = new List<string>();
-            DirectoryInfo root = new DirectoryInfo(ModManager.ModBaseUrlPath + "lua/");
+            List<string> fileList = new();
+            DirectoryInfo root = new(ModManager.ModBaseUrlPath + "lua/");
             foreach (FileInfo f in root.GetFiles())
             {
                 if (f.Name.EndsWith(".lua"))
@@ -88,66 +130,68 @@ namespace JX_Decode_Plugin
         }
 
         //保存解密lua文件
-        private static void saveLuaFile()
+        private static void SaveLuaFile()
         {
-            string savePath = string.Format("{0}/{1}/", JX_Decode_Plugin.savePath, "LUA");
-            if (!Directory.Exists(savePath))
+            foreach (string s in GetLuaFileList())
             {
-                Directory.CreateDirectory(savePath);
+                using StreamWriter streamWriter = new(JX_Decode_Plugin.savePath_LUA + s.Replace("jygame/", ""));
+                streamWriter.Write(System.Text.Encoding.UTF8.GetString(LuaManager.JyGameLuaLoader(s)));
             }
-            foreach (string s in getLuaFileList())
-            {
-                using (StreamWriter streamWriter = new StreamWriter(savePath + s.Replace("jygame/", "")))
-                {
-                    streamWriter.Write(System.Text.Encoding.UTF8.GetString(LuaManager.JyGameLuaLoader(s)));
-                }
-            }
-        }
-
-        //保存解密xml文件
-        private static void saveXmlFile()
-        {
-            string savePath = string.Format("{0}/{1}/", JX_Decode_Plugin.savePath, "XML");
-            if (!Directory.Exists(savePath))
-            {
-                Directory.CreateDirectory(savePath);
-            }
-            Dictionary<Type, Dictionary<string, object>> gameInfo = (Dictionary<Type, Dictionary<string, object>>)Traverse.Create<JyGame.ResourceManager>().Field(xmlsHookPath).GetValue();
-            foreach (KeyValuePair<Type, Dictionary<string, object>> kv in gameInfo)
-            {
-                //拼接
-                string content = string.Format("<{0}>\n", kv.Key.ToString());
-                foreach (KeyValuePair<string, object> kv1 in kv.Value)
-                {
-                    content += "\t" + (JyGame.Tools.SerializeXML(kv1.Value)) + "\n";
-                }
-                content += string.Format("</{0}>", kv.Key.ToString());
-                //输出
-                using (StreamWriter streamWriter = new StreamWriter(string.Format("{0}/{1}", savePath, kv.Key.ToString() + ".xml")))
-                {
-                    streamWriter.Write(content);
-                }
-            }
-
         }
 
         //Hook代码
         public static bool Prefix(MainMenu __instance)
         {
-            //清空创建文件夹
-            try
-            {
-                Directory.Delete(JX_Decode_Plugin.savePath, true);
-            }
-            finally
-            {
-                Directory.CreateDirectory(JX_Decode_Plugin.savePath);
-            }
+            List<string> visitedUrl = (List<string>)Traverse.Create<ResourceManager>().Field("visitedUri").GetValue();
+            foreach (string s in visitedUrl) JX_Decode_Plugin.logXML_name.Add(s);
+            //Debug.LogWarning(visitedUrl.Count);
+            //Debug.LogWarning(JX_Decode_Plugin.logXML.Count);
+            //Debug.LogWarning(JX_Decode_Plugin.logXML_name.Count);
             __instance.messageBoxObj.GetComponent<MessageBoxUI>().Show("提示", "解密中……", Color.green, null, "请等待");
-            saveLuaFile();
-            saveXmlFile();
-            __instance.messageBoxObj.GetComponent<MessageBoxUI>().Show("提示", "成功解密到" + JX_Decode_Plugin.savePath, Color.green, null, "ED");
+            SaveLuaFile();
+            if(JX_Decode_Plugin.logXML_name.Count == JX_Decode_Plugin.logXML.Count)
+            {
+                for(int i=0;i< JX_Decode_Plugin.logXML_name.Count; i++)
+                {
+                    using StreamWriter streamWriter = new(JX_Decode_Plugin.savePath_XML + JX_Decode_Plugin.logXML_name[i]);
+                    streamWriter.Write(JX_Decode_Plugin.logXML[i]);
+                }
+            }
+            __instance.messageBoxObj.GetComponent<MessageBoxUI>().Show("提示", $"成功解密到\n{JX_Decode_Plugin.savePath_XML}\n和\n{JX_Decode_Plugin.savePath_LUA}", Color.green, null, "ED");
+            JX_Decode_Plugin.isLog = false;
             return false;
+        }
+    }
+
+    //XmlDocument下的LoadXml函数Hook
+    [HarmonyPatch(typeof(XmlDocument), "LoadXml")]
+    class XmlDocument_LoadXml_Patch
+    {
+        public static bool Prefix(ref string xml)
+        {
+            if (JX_Decode_Plugin.isLog)
+            {
+                Debug.LogWarning(xml.Substring(0, 20));
+                JX_Decode_Plugin.logXML.Add(xml);
+            }
+            return true;
+        }
+    }
+
+
+    //XmlDocument下的LoadXml函数Hook
+    [HarmonyPatch(typeof(ModItemUI), "OnLoad")]
+    class ModItemUI_OnLoad_Patch
+    {
+        public static bool Prefix()
+        {
+            JX_Decode_Plugin.isLog = true;
+            Debug.LogWarning("开始记录XML……");
+            JX_Decode_Plugin.logXML.Clear();
+            JX_Decode_Plugin.logXML_name.Clear();
+            //设置第一个提示xml
+            JX_Decode_Plugin.logXML_name.Add("resource_suggesttips.xml");
+            return true;
         }
     }
 
