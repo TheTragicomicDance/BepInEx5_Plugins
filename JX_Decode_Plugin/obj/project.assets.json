@@ -106,7 +106,7 @@
           "lib/net35/MonoMod.Utils.dll": {}
         }
       },
-      "UnityEngine.Modules/5.6.0": {
+      "UnityEngine.Modules/5.2.4": {
         "type": "package",
         "compile": {
           "lib/net35/UnityEngine.dll": {}
@@ -414,16 +414,16 @@
         "monomod.utils.nuspec"
       ]
     },
-    "UnityEngine.Modules/5.6.0": {
-      "sha512": "75gMEfWUx3r8OWT//33acnWSaipdLUo5l/B7o1sGPSThp/eWioOcGXE3dhz+Ye8ZrzMrJbEbCpjxowIu5J6JDw==",
+    "UnityEngine.Modules/5.2.4": {
+      "sha512": "QEeu6vpnwLNKZiFsqO2DACK2M4psedwqWbsWWtcSNJmHDXlHRKK4mbzHm/5amDlPrqyfe5cTmf2gVvSeZo3GLQ==",
       "type": "package",
-      "path": "unityengine.modules/5.6.0",
+      "path": "unityengine.modules/5.2.4",
       "files": [
         ".nupkg.metadata",
         "lib/net35/UnityEngine.dll",
         "lib/net45/UnityEngine.dll",
         "lib/netstandard2.0/UnityEngine.dll",
-        "unityengine.modules.5.6.0.nupkg.sha512",
+        "unityengine.modules.5.2.4.nupkg.sha512",
         "unityengine.modules.nuspec"
       ]
     }
@@ -434,7 +434,7 @@
       "BepInEx.Core >= 5.*",
       "BepInEx.PluginInfoProps >= 1.*",
       "Microsoft.NETFramework.ReferenceAssemblies >= 1.0.2",
-      "UnityEngine.Modules >= 5.6.0"
+      "UnityEngine.Modules >= 5.2.4"
     ]
   },
   "packageFolders": {
@@ -499,10 +499,10 @@
           "UnityEngine.Modules": {
             "include": "Compile",
             "target": "Package",
-            "version": "[5.6.0, )"
+            "version": "[5.2.4, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

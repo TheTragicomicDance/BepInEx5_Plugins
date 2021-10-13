@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AkuB83dgUL543E2PqU2FBYN8PbZ68v66HiBYGAQq/O5j5h4i2fjUJEqhThSYHQlV36lZgzaCXzIk0GRHsmIxww==",
+  "dgSpecHash": "q3MELZ79mDEBNyogNOlP/pjK7MAUCfEtVTW6waQ282s00Z1FVmPBxF9BV34GIIpz2eUKyp9yk58h8OFHk+qIeg==",
   "success": true,
   "projectFilePath": "C:\\Users\\84991\\Desktop\\JX_Plugins\\JX_Decode_Plugin\\JX_Decode_Plugin.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,7 @@
     "C:\\Users\\84991\\.nuget\\packages\\mono.cecil\\0.10.4\\mono.cecil.0.10.4.nupkg.sha512",
     "C:\\Users\\84991\\.nuget\\packages\\monomod.runtimedetour\\21.8.19.1\\monomod.runtimedetour.21.8.19.1.nupkg.sha512",
     "C:\\Users\\84991\\.nuget\\packages\\monomod.utils\\21.8.19.1\\monomod.utils.21.8.19.1.nupkg.sha512",
-    "C:\\Users\\84991\\.nuget\\packages\\unityengine.modules\\5.6.0\\unityengine.modules.5.6.0.nupkg.sha512"
+    "C:\\Users\\84991\\.nuget\\packages\\unityengine.modules\\5.2.4\\unityengine.modules.5.2.4.nupkg.sha512"
   ],
   "logs": []
 }

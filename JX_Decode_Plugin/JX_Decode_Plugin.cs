@@ -2,9 +2,11 @@
 using HarmonyLib;
 using JyGame;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace JX_Decode_Plugin
 {
@@ -32,6 +34,35 @@ namespace JX_Decode_Plugin
             //Hook所有代码
             Harmony = new Harmony("JX_Decode_Patch");
             Harmony.PatchAll();
+        }
+
+        void OnGUI()
+        {
+            if (GUI.Button(new Rect(20, 40, 80, 20), "点这里！"))
+            {
+                Debug.Log("OK");
+                StartCoroutine(LoadTestScenece());
+            }
+        }
+
+
+        IEnumerator LoadTestScenece()
+        {
+            //第三种加载方式   使用UnityWbRequest  服务器加载使用http本地加载使用file
+            string url = @"file:///C:\Users\84991\Desktop\JX_Plugins\Components\Components\AssetBundles\testbundle.ab";
+
+            WWW bundle = new WWW(url);
+            yield return bundle;
+            if (bundle.error == null)
+            {
+                AssetBundle ab = bundle.assetBundle; //将场景通过AssetBundle方式加载到内存中 
+                AsyncOperation asy = Application.LoadLevelAsync("TestSence"); //sceneName不能加后缀,只是场景名称
+                yield return asy;   
+            }
+            else
+            {
+                Debug.LogError(bundle.error);
+            }
         }
     }
 
