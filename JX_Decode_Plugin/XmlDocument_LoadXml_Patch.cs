@@ -12,7 +12,7 @@ namespace JX_Decode_Plugin
         {
             if (JX_Decode_Plugin.isLog)
             {
-                Debug.LogWarning(xml.Substring(0, 20));
+                //Debug.LogWarning(xml.Substring(0, 20));
                 JX_Decode_Plugin.logXML.Add(xml);
             }
             return true;

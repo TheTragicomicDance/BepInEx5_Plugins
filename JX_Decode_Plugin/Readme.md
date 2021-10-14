@@ -16,7 +16,27 @@
 
 `游戏客户端\BepInex\config\JX_Decode_Plugin.cfg`
 
-具体参数只有一个，第一次启动本插件会自动生成。
+```ini
+## Settings file was created by plugin JX_Decode_Plugin v1.0.0
+## Plugin GUID: JX_Decode_Plugin
+
+[General]
+
+## 配置文件的保存路径
+# Setting type: String
+# Default value: 客户端路径/gamedata//解密
+savePath = 客户端路径/gamedata//解密
+
+# Setting type: KeyboardShortcut
+# Default value: D + LeftControl
+hotKey = D + LeftControl
+```
+
+## 使用方法
+
+1. 默认 `hotKey`为 `LeftCtrl + D`，在MOD加载完毕进入主界面后随时按下，可以弹出GUI信息提示框进行解密。
+2. 游戏左上角默认一个按钮 `解密`，点击之后和按下 `hotKey`效果相同。
+3. MOD加载完毕后主界面按下抚琴`按钮（音乐盒功能的那个按钮），即可弹出提示信息提示进行解密。
 
 ## 编译
 

@@ -34,7 +34,7 @@ namespace JX_Decode_Plugin
         }
 
         //保存解密lua文件
-        private static void SaveLuaFile()
+        public static void SaveLuaFile()
         {
             foreach (string s in GetLuaFileList(ModManager.ModBaseUrlPath + "lua/"))
             {
