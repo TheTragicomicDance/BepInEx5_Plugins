@@ -11,15 +11,23 @@ namespace JX_Decode_Plugin
     class MainMenu_OnMusic_Patch
     {
         //获得lua列表
-        private static List<string> GetLuaFileList()
+        private static List<string> GetLuaFileList(string path)
         {
             List<string> fileList = new();
-            DirectoryInfo root = new(ModManager.ModBaseUrlPath + "lua/");
+            DirectoryInfo root = new(path);
             foreach (FileInfo f in root.GetFiles())
             {
                 if (f.Name.EndsWith(".lua"))
                 {
                     fileList.Add("jygame/" + f.Name);
+                }
+            }
+            foreach (DirectoryInfo d in root.GetDirectories())
+            {
+                List<string> subFileList = GetLuaFileList(d.FullName);
+                foreach(string s in subFileList)
+                {
+                    fileList.Add($"jygame/{d.Name}/{s}");
                 }
             }
             return fileList;
@@ -28,9 +36,15 @@ namespace JX_Decode_Plugin
         //保存解密lua文件
         private static void SaveLuaFile()
         {
-            foreach (string s in GetLuaFileList())
+            foreach (string s in GetLuaFileList(ModManager.ModBaseUrlPath + "lua/"))
             {
-                using StreamWriter streamWriter = new(JX_Decode_Plugin.savePath_LUA + s.Replace("jygame/", ""));
+                Debug.LogWarning(s);
+                string savePath = JX_Decode_Plugin.savePath_LUA + s.Replace("jygame/", "");
+                if (!Directory.Exists(System.IO.Path.GetDirectoryName(savePath)))
+                {
+                    Directory.CreateDirectory(System.IO.Path.GetDirectoryName(savePath));
+                }
+                using StreamWriter streamWriter = new(savePath);
                 streamWriter.Write(System.Text.Encoding.UTF8.GetString(LuaManager.JyGameLuaLoader(s)));
             }
         }
