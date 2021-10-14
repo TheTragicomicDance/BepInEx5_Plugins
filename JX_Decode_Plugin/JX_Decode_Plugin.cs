@@ -38,7 +38,7 @@ namespace JX_Decode_Plugin
                              string.Format("{0}/{1}", CommonSettings.persistentDataPath, "解密"), // The default value
                              "配置文件的保存路径"); // Description of the option to show in the config file
             // 配置默认快捷键为 左Ctrl + D
-            hotKey = Config.Bind("General", "hotKey", new BepInEx.Configuration.KeyboardShortcut(KeyCode.D, KeyCode.LeftControl));
+            hotKey = Config.Bind("General", "hotKey", new BepInEx.Configuration.KeyboardShortcut(KeyCode.D, KeyCode.LeftControl), "解密的快捷按键");
             //设置基础路径
             savePath_LUA = string.Format("{0}/{1}/", savePath.Value, "LUA");
             savePath_XML = string.Format("{0}/{1}/", savePath.Value, "XML");
@@ -143,26 +143,6 @@ namespace JX_Decode_Plugin
             }
             GUILayout.EndArea();
         }
-        /*
-        IEnumerator LoadTestScenece()
-        {
-            //第三种加载方式   使用UnityWbRequest  服务器加载使用http本地加载使用file
-            string url = @"file:///C:\Users\84991\Desktop\JX_Plugins\Components\Components\AssetBundles\testbundle.ab";
-
-            WWW bundle = new WWW(url);
-            yield return bundle;
-            if (bundle.error == null)
-            {
-                AssetBundle ab = bundle.assetBundle; //将场景通过AssetBundle方式加载到内存中 
-                AsyncOperation asy = Application.LoadLevelAsync("TestSence"); //sceneName不能加后缀,只是场景名称
-                yield return asy;
-            }
-            else
-            {
-                Debug.LogError(bundle.error);
-            }
-        }
-        */
     }
 
 }

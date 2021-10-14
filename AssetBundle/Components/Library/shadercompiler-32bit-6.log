@@ -1,3 +1,7 @@
 Base path: C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-32bit-6-5140
+Pipe name: \\.\pipe\UnityShaderCompiler-32bit-6-9900
 Cmd: getPlatforms
+Unhandled exception: Readfile from pipe failed. GLE=管道已结束。
+
+
+Quitting shader compiler process
