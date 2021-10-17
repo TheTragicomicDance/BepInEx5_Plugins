@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 162109497
+CRC: 2060755648
 Hashes:
   AssetFileHash:
     serializedVersion: 2
@@ -47,4 +47,5 @@ ClassTypes:
   Script: {instanceID: 0}
 Assets:
 - Assets/Bundle/RankingPanel.prefab
+- Assets/Scripts/RankPanel_Class.dll
 Dependencies: []

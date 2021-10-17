@@ -1,0 +1,28 @@
+fileFormatVersion: 2
+guid: a67db9789bf484a4c849db154f95ebf0
+timeCreated: 1634458663
+licenseType: Pro
+PluginImporter:
+  serializedVersion: 1
+  iconMap: {}
+  executionOrder: {}
+  isPreloaded: 0
+  platformData:
+    Any:
+      enabled: 1
+      settings: {}
+    Editor:
+      enabled: 0
+      settings:
+        DefaultValueInitialized: true
+    LinuxUniversal:
+      enabled: 0
+      settings:
+        CPU: None
+    OSXUniversal:
+      enabled: 0
+      settings:
+        CPU: None
+  userData: 
+  assetBundleName: rankpanel
+  assetBundleVariant: ab

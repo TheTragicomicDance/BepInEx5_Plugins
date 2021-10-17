@@ -94,6 +94,9 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="RankPanel_Class">
+ <HintPath>C:/Users/84991/Desktop/JX_Plugins/AssetBundle/Components/Assets/Scripts/RankPanel_Class.dll</HintPath>
+ </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>
