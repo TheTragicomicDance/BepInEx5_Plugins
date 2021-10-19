@@ -1,5 +1,5 @@
-[submodule "References\\dnlib"]
-	path = References\\dnlib
+[submodule "References/dnlib"]
+	path = References/dnlib
 	url = https://github.com/0xd4d/dnlib.git
 [submodule "References/IL-Repack"]
 	path = References/IL-Repack
