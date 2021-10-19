@@ -94,19 +94,12 @@
  <Reference Include="UnityEditor.OSXStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data/PlaybackEngines/macstandalonesupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="RankPanel_Class">
- <HintPath>C:/Users/84991/Desktop/JX_Plugins/AssetBundle/Components/Assets/Scripts/RankPanel_Class.dll</HintPath>
- </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data/Managed/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.15f1c1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{AB15D135-1F18-BB89-9126-E1A4C4EF01B1}</Project>      <Name>Assembly-CSharp</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

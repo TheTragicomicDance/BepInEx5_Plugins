@@ -11,8 +11,6 @@ namespace LoadAssetBundle
     [BepInPlugin(PluginInfo.PLUGIN_GUID, PluginInfo.PLUGIN_NAME, PluginInfo.PLUGIN_VERSION)]
     public class Plugin : BaseUnityPlugin
     {
-        private static string dllName = "RankPanel_Class.dll";
-        private static string mergeDllPath = string.Format("{0}/{1}/{2}", Paths.BepInExRootPath, "Fix", dllName);
 
         private static GameObject RankPanel;
         private ConfigEntry<string> rankBundlePath;

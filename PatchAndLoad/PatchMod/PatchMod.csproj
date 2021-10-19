@@ -32,13 +32,6 @@
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
-  
-  <ItemGroup>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\libs\UnityEngine.UI.dll</HintPath>
-      <Private>false</Private>
-    </Reference>
-  </ItemGroup>
   <!--IL-Repack插件
   <Target Name="ILRepack">
     <Exec Command="$(ILRepack) /out:$(OutputPath)$(AssemblyName).dll $(OutputPath)$(AssemblyName).dll $(OutputPath)dnlib.dll" />
