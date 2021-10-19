@@ -2,12 +2,19 @@
 
   <PropertyGroup>
     <TargetFramework>net35</TargetFramework>
-    <AssemblyName>JX_Rank_Patch</AssemblyName>
-    <Description>My first plugin</Description>
+    <AssemblyName>PatchMod</AssemblyName>
+    <Description>金庸群侠传X dll修补注入插件。</Description>
     <Version>1.0.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <LangVersion>9.0</LangVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PackageId>com.EasternDay.JX_Patch</PackageId>
+    <Authors>EasternDay</Authors>
+    <Company>EasternDay</Company>
+    <Product>EasternDay</Product>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -32,4 +39,15 @@
       <Private>false</Private>
     </Reference>
   </ItemGroup>
+  <!--IL-Repack插件
+  <Target Name="ILRepack">
+    <Exec Command="$(ILRepack) /out:$(OutputPath)$(AssemblyName).dll $(OutputPath)$(AssemblyName).dll $(OutputPath)dnlib.dll" />
+  </Target>
+  <Target Name="_ProjectRemoveDependencyFiles" AfterTargets="AfterBuild" DependsOnTargets="ILRepack">
+    <ItemGroup>
+      <_ProjectDependencyFile Include="$(OutputPath)dnlib.dll" />
+    </ItemGroup>
+    <Delete Files="@(_ProjectDependencyFile)" />
+  </Target>
+  -->
 </Project>
