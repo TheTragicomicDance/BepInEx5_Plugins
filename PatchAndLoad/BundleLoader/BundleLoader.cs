@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace BundleLoader
 {
-    [BepInPlugin("com.EasternDay.BundleLoader", "Mod的Bundle加载器示例", "0.0.1")]
+    [BepInPlugin("com.EasternDay.BundleLoader", "Mod的Bundle加载器", "0.0.1")]
     public class BundleLoader : BaseUnityPlugin
     {
         // 日志记录
