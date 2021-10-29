@@ -10,11 +10,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
@@ -33,4 +33,31 @@
   <ItemGroup>
     <ProjectReference Include="..\PatchModInfo\PatchModInfo.csproj" />
   </ItemGroup>
+  <!--IL-Repack插件-->
+  <ItemGroup>
+    <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.1" />
+  </ItemGroup>
+  <!--合并之后似乎没什么用，所以取消了合并-->
+  <Target Name="ILRepack" AfterTargets="-Build-">
+    <PropertyGroup>
+      <WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)\</WorkingDirectory>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <InputAssemblies Include="$(WorkingDirectory)PatchModInfo.dll" />
+      <InputAssemblies Include="$(WorkingDirectory)YamlDotNet.dll" />
+    </ItemGroup>
+
+    <!--
+    <ItemGroup>
+      <InternalizeExcludeAssemblies Include="do.not.internalize.this.assembly.dll" />
+      <InternalizeExcludeAssemblies Include="^Some.Assembly.Namespace" />
+      <InternalizeExcludeAssemblies Include="^Some.Assembly.Namespace.SpecificType" />
+    </ItemGroup>
+    -->
+
+    <ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).dll" OutputAssembly="$(AssemblyName).dll" InputAssemblies="@(InputAssemblies)" InternalizeExcludeAssemblies="@(InternalizeExcludeAssemblies)" WorkingDirectory="$(WorkingDirectory)" />
+    <Delete Files="@(InputAssemblies)"></Delete>
+    <Delete Files="$(WorkingDirectory)*.pdb"></Delete>
+  </Target>
 </Project>

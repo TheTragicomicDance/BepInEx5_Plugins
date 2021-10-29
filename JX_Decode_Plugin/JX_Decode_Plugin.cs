@@ -103,13 +103,13 @@ namespace JX_Decode_Plugin
         void DoPatching()
         {
             //Hook所有代码
-            Harmony = new Harmony("JX_Decode_Patch");
+            Harmony = new Harmony("com.EasternDay.JX_Decode_Patch");
             Harmony.PatchAll();
             // 控制台提示语
             Logger.LogInfo($"插件 {PluginInfo.PLUGIN_GUID} 成功Hook代码!");
         }
 
-        
+
         void OnGUI()
         {
             if (isShowGUI)
@@ -118,7 +118,7 @@ namespace JX_Decode_Plugin
                 Rect windowRect = new Rect(500, 200, 500, 300);
                 // 创建一个新窗口
                 // 注意：第一个参数(20210218)为窗口ID，ID尽量设置的与众不同，若与其他Mod的窗口ID相同，将会导致窗口冲突
-                windowRect = GUI.Window(849919718/1, windowRect, DoMyWindow, "信息提示框");
+                windowRect = GUI.Window(849919718 / 1, windowRect, DoMyWindow, "信息提示框");
             }
             else
             {
