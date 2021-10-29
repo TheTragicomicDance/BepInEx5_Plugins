@@ -18,29 +18,58 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath></OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all" />
     <PackageReference Include="BepInEx.Core" Version="5.4.16" />
     <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
-    <PackageReference Include="ILRepack" Version="2.0.18" />
+    <PackageReference Include="ILRepack" Version="2.1.0-beta1" />
+    <PackageReference Include="sharpconfig" Version="3.2.9.1" />
     <PackageReference Include="UnityEngine.Modules" Version="5.6.0" IncludeAssets="compile" />
+    <PackageReference Include="YamlDotNet" Version="11.2.1" />
   </ItemGroup>
-  
+
   <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
   </ItemGroup>
-  <!--IL-Repack插件
-  <Target Name="ILRepack">
-    <Exec Command="$(ILRepack) /out:$(OutputPath)$(AssemblyName).dll $(OutputPath)$(AssemblyName).dll $(OutputPath)dnlib.dll" />
-  </Target>
-  <Target Name="_ProjectRemoveDependencyFiles" AfterTargets="AfterBuild" DependsOnTargets="ILRepack">
+
+  <ItemGroup>
+    <ProjectReference Include="..\PatchModInfo\PatchModInfo.csproj" />
+  </ItemGroup>
+
+  <!--IL-Repack插件-->
+  <ItemGroup>
+    <PackageReference Include="ILRepack.MSBuild.Task" Version="2.0.1" />
+  </ItemGroup>
+  <!--合并之后似乎没什么用，所以取消了合并-->
+  <Target Name="ILRepack" AfterTargets="-Build-">
+    <PropertyGroup>
+      <WorkingDirectory>$(MSBuildThisFileDirectory)bin\$(Configuration)\$(TargetFramework)\</WorkingDirectory>
+    </PropertyGroup>
+
     <ItemGroup>
-      <_ProjectDependencyFile Include="$(OutputPath)dnlib.dll" />
+      <InputAssemblies Include="$(WorkingDirectory)PatchModInfo.dll" />
+      <InputAssemblies Include="$(WorkingDirectory)SharpConfig.dll" />
+      <InputAssemblies Include="$(WorkingDirectory)YamlDotNet.dll" />
     </ItemGroup>
-    <Delete Files="@(_ProjectDependencyFile)" />
+  
+    <!--
+    <ItemGroup>
+      <InternalizeExcludeAssemblies Include="do.not.internalize.this.assembly.dll" />
+      <InternalizeExcludeAssemblies Include="^Some.Assembly.Namespace" />
+      <InternalizeExcludeAssemblies Include="^Some.Assembly.Namespace.SpecificType" />
+    </ItemGroup>
+    -->
+
+    <ILRepack OutputType="$(OutputType)" MainAssembly="$(AssemblyName).dll" OutputAssembly="$(AssemblyName).dll" InputAssemblies="@(InputAssemblies)" InternalizeExcludeAssemblies="@(InternalizeExcludeAssemblies)" WorkingDirectory="$(WorkingDirectory)" />
+    <Delete Files="@(InputAssemblies)"></Delete>
+    <Delete Files="$(WorkingDirectory)*.*"></Delete>
   </Target>
-  -->
 </Project>
